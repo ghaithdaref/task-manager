@@ -63,13 +63,13 @@ main { min-height: 100vh; background: transparent; transition: margin-left var(-
   width: min(320px, 85vw);
   max-width: 90vw;
   transform: translateX(-100%);
-  border-top-right-radius: 30px;
-  border-bottom-right-radius: 30px;
+  border-top-right-radius: 40px;
+  border-bottom-right-radius: 40px;
   transition: transform var(--dur-medium) var(--ease-out), opacity var(--dur-medium) var(--ease-out);
   opacity: 0;
-  /* animation: sidebarIntro .6s var(--ease); */
+  animation: sidebarIntro .6s var(--ease);
   will-change: transform, opacity;
-  box-shadow: 10px 0 30px rgba(0,0,0,0.1), inset 10px 0 15px -5px rgba(0,0,0,0.1);
+  box-shadow: 10px 0 30px rgba(0,0,0,0.1);
   z-index: 1000;
 }
 .layout[data-sidebar="open"] .sidebar { transform: translateX(0); opacity: 1 }
@@ -89,9 +89,9 @@ main { min-height: 100vh; background: transparent; transition: margin-left var(-
 }
 .nav a::after { content:""; position:absolute; left:0; top:0; bottom:0; width: 4px; background: #fff; border-radius: 0 4px 4px 0; transform: scaleY(0); transform-origin: top; transition: transform var(--dur-short) var(--ease) }
 .nav a:hover::after, .nav a.active::after { transform: scaleY(1) }
-.nav a:hover { opacity: 1; background: rgba(0,0,0,0.05); transform: translateX(2px); border-color: rgba(0,0,0,0.1); }
+.nav a:hover { opacity: 1; background: rgba(0,0,0,0.05); transform: translateX(4px); border-color: rgba(0,0,0,0.1); }
 
-.nav a.active { background: var(--title1); color: #fff; opacity: 1; border-color: var(--title1); }
+.nav a.active { background: var(--title1); color: #fff; opacity: 1; border-color: var(--title1); box-shadow: 0 0 10px rgba(255,255,255,0.1); }
 /* .nav a:hover is now merged with  */
 .topbar { display: flex; justify-content: space-between; padding: var(--space-md) var(--space-lg); animation: pageIn .45s var(--ease) both }
 .topbar-controls {
