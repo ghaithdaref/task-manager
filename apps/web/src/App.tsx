@@ -1,6 +1,7 @@
 import { NavLink, Route, Routes, useNavigate, Navigate } from 'react-router-dom'
 import { useEffect, useRef, useState } from 'react'
 import { logout, isAuthed, ensureAuth } from './api/client'
+import LoadingScreen from './components/LoadingScreen'
 import Dashboard from './pages/Dashboard'
 import Tasks from './pages/Tasks'
 import Calendar from './pages/Calendar'
@@ -23,6 +24,7 @@ export default function App() {
   const [theme, setTheme] = useState(initialTheme)
   const navigate = useNavigate()
   const [authed, setAuthed] = useState(isAuthed())
+  const [loading, setLoading] = useState(true)
   const [sidebarOpen, setSidebarOpen] = useState(false)
   const sidebarRef = useRef<HTMLDivElement | null>(null)
   const [notificationsOpen, setNotificationsOpen] = useState(false)
@@ -46,7 +48,12 @@ export default function App() {
     window.addEventListener('storage', onStorage)
     return ()=>window.removeEventListener('storage', onStorage)
   },[])
-  useEffect(()=>{ ensureAuth().then(()=>{ setAuthed(isAuthed()) }) },[])
+  useEffect(()=>{
+    ensureAuth().then(()=>{
+      setAuthed(isAuthed())
+      setLoading(false)
+    })
+  },[])
   useEffect(()=>{
     const onKey = (e: KeyboardEvent) => {
       if (e.key === 'Escape') setSidebarOpen(false)
@@ -227,16 +234,23 @@ export default function App() {
       </aside>
       <div className="sidebar-backdrop" aria-hidden onClick={()=>setSidebarOpen(false)} />
       <main className="animate-page" aria-hidden={sidebarOpen}>
+        {loading && <LoadingScreen />}
         <div className="topbar" />
         <Routes>
           <Route path="/signin" element={<SignIn />} />
           <Route path="/signup" element={authed ? <Navigate to="/" replace /> : <SignUp />} />
+          {loading ? (
+            <Route path="*" element={<div style={{ padding: 20, textAlign: 'center' }}>Loading application...</div>} />
+          ) : (
+            <>
           <Route path="/" element={<RequireAuth><Dashboard /></RequireAuth>} />
           <Route path="/tasks" element={<RequireAuth><Tasks /></RequireAuth>} />
           <Route path="/focus" element={<RequireAuth><Focus /></RequireAuth>} />
           <Route path="/calendar" element={<RequireAuth><Calendar /></RequireAuth>} />
           <Route path="/recurring" element={<RequireAuth><Recurring /></RequireAuth>} />
           <Route path="/settings" element={<RequireAuth><Settings /></RequireAuth>} />
+            </>
+          )}
         </Routes>
       </main>
     </div>

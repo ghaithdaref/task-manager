@@ -112,6 +112,8 @@ api.interceptors.response.use(undefined, async (error) => {
     const ok = await refresh()
     if (ok) {
       config.__retried = true
+      // Re-add the Authorization header with the new token
+      config.headers.Authorization = api.defaults.headers.Authorization
       return api.request(config)
     } else {
       // Refresh failed, clear auth
