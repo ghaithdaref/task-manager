@@ -1593,14 +1593,15 @@ input.input[type="date"]::-webkit-calendar-picker-indicator {
     grid-template-columns: repeat(7, minmax(0, 1fr)); /* Ensure 7 columns */
   }
   .calendar-day {
-    min-height: 60px; /* Further reduce minimum height of day cells */
+    min-height: 40px; /* Drastically reduce minimum height */
     padding: 4px; /* Further reduce padding */
     font-size: 11px; /* Further reduce font size */
     border: none; /* Remove border for cleaner look */
     box-shadow: 0 4px 12px rgba(0,0,0,0.1); /* Use shadow instead of border */
   }
   .calendar-day__date {
-    font-size: 12px; /* Further reduce date font size */
+    font-size: 14px; /* Increase date font size for visibility */
+    justify-content: flex-start; /* Revert to left alignment */
   }
   .calendar-day__weekday {
     display: none; /* Hide weekday name inside the cell to save space */
@@ -1669,10 +1670,18 @@ input.input[type="date"]::-webkit-calendar-picker-indicator {
   opacity: 0.6;
 }
   .calendar-day__tasks {
-    display: flex;
+    display: flex; /* Revert to default display */
     flex-direction: column;
-    gap: 2px; /* Reduce gap between tasks */
-    margin-bottom: 4px; /* Reduce margin */
+    gap: 2px;
+    margin-bottom: 4px;
+  }
+  .calendar-day__footer {
+    display: flex; /* Revert to default display */
+    margin-top: auto;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 11px;
+    opacity: 0.7;
   }
 .calendar-event {
   display: inline-flex;
