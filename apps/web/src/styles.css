@@ -177,6 +177,12 @@ main { min-height: 100vh; background: transparent; transition: margin-left var(-
     width: 32px;
     height: 32px;
   }
+  .floating-controls__cluster--right .button > span {
+    display: none; /* Hide text in right cluster buttons on mobile */
+  }
+  .floating-controls__cluster--right .button {
+    padding: 8px; /* Square button for icon only */
+  }
 }
 [data-theme="dark"] .floating-controls .overlay-block {
   background: rgba(18,18,18,0.9);
