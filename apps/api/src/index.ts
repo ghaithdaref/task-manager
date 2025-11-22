@@ -4,6 +4,7 @@ import helmet from 'helmet'
 import cookieParser from 'cookie-parser'
 import { config } from './config'
 import { initializeSchema } from './db'
+import path from 'path'
 import authRoutes from './routes/auth'
 import taskRoutes from './routes/tasks'
 import recurringRoutes from './routes/recurring'
@@ -23,6 +24,16 @@ app.use('/auth', authRoutes)
 app.use('/tasks', taskRoutes)
 app.use('/recurring', recurringRoutes)
 app.use('/analytics', analyticsRoutes)
+
+// Serve static files from the React app
+const webAppPath = path.join(__dirname, '../../../apps/web/dist');
+app.use(express.static(webAppPath));
+
+// The "catchall" handler: for any request that doesn't
+// match one above, send back React's index.html file.
+app.get('*', (req, res) => {
+  res.sendFile(path.join(webAppPath, 'index.html'));
+});
 
 // Initialize database schema on startup
 const startServer = async () => {
