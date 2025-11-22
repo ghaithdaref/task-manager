@@ -115,6 +115,7 @@ main { min-height: 100vh; background: transparent; transition: margin-left var(-
   top: var(--space-lg);
   left: var(--space-lg);
   right: var(--space-lg);
+  transition: all var(--dur-medium) var(--ease); /* Add transition for smooth changes */
   display: flex;
   justify-content: space-between;
   gap: var(--space-sm);
@@ -645,22 +646,56 @@ main { min-height: 100vh; background: transparent; transition: margin-left var(-
 }
 @media (max-width: 720px) {
   .floating-controls {
-    top: auto;
-    bottom: var(--space-lg);
-    left: var(--space-lg);
-    right: var(--space-lg);
-    flex-direction: column;
-    align-items: stretch;
+    top: var(--space-sm); /* Keep it at the top */
+    bottom: auto;
+    left: var(--space-sm);
+    right: var(--space-sm);
+    flex-direction: row; /* Keep it as a row for top bar */
+    align-items: center;
+    padding: var(--space-sm);
+    background: var(--card); /* Add background for visibility */
+    border-radius: 14px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    border: 1px solid rgba(0,0,0,0.05);
   }
-  .floating-controls__cluster,
-  .floating-controls__cluster--right {
-    margin-left: 0;
-    justify-content: stretch;
-    flex-direction: column;
+  [data-theme="dark"] .floating-controls {
+    background: var(--card);
+    border-color: rgba(255,255,255,0.08);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.4);
   }
   .floating-controls .overlay-block {
-    flex-direction: column;
-    align-items: stretch;
+    background: transparent; /* Remove block background */
+    border: none;
+    box-shadow: none;
+    padding: 0;
+    backdrop-filter: none;
+  }
+  .floating-controls__cluster {
+    gap: var(--space-xs);
+  }
+  .floating-controls__cluster--left {
+    flex-grow: 1;
+    justify-content: flex-start;
+  }
+  .floating-controls__cluster--right {
+    margin-left: 0;
+    justify-content: flex-end;
+    flex-grow: 1;
+  }
+  .floating-controls .overlay-label {
+    display: none; /* Hide labels on mobile */
+  }
+  .floating-controls .button {
+    padding: 8px 12px; /* Smaller buttons */
+  }
+  .notification-overlay {
+    min-width: auto;
+  }
+  .notification-popover {
+    width: min(300px, 90vw); /* Smaller popover */
+  }
+  .layout main {
+    padding-top: 80px; /* Add padding to main content to account for fixed header */
   }
 }
 /* Make the menu button larger */
