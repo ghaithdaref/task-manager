@@ -117,38 +117,7 @@ export const initializeSchema = async () => {
     const schema = fs.readFileSync(schemaPath, 'utf-8')
     
     // Remove comments and split by semicolon, but be careful with functions
-    const lines = schema.split('\n')
-    let currentStatement = ''
-    const statements: string[] = []
-    let inFunction = false
-    
-    for (const line of lines) {
-      const trimmed = line.trim()
-      
-      // Skip empty lines and comments
-      if (!trimmed || trimmed.startsWith('--')) continue
-      
-      currentStatement += line + '\n'
-      
-      // Check if we're entering or exiting a function/trigger block
-      if (trimmed.includes('CREATE OR REPLACE FUNCTION') || trimmed.includes('CREATE FUNCTION')) {
-        inFunction = true
-      }
-      
-      // Check if we're in a $$ block (function body)
-      if (trimmed.includes('$$')) {
-        inFunction = !inFunction
-      }
-      
-      // If we hit a semicolon and we're not in a function, it's the end of a statement
-      if (trimmed.endsWith(';') && !inFunction) {
-        const stmt = currentStatement.trim()
-        if (stmt.length > 0) {
-          statements.push(stmt)
-        }
-        currentStatement = ''
-      }
-    }
+    const statements = schema.split(/;\s*\n/)
     
     // Execute each statement
     for (const statement of statements) {
