@@ -170,8 +170,8 @@ main { min-height: 100vh; background: transparent; transition: margin-left var(-
     gap: var(--space-xs);
   }
   .floating-controls .overlay-block .button {
-    padding: 8px 12px; /* Smaller button padding */
-    font-size: 13px;
+    padding: 6px 10px; /* Even smaller button padding */
+    font-size: 12px; /* Even smaller font size */
   }
   .floating-controls .overlay-block .button-icon {
     width: 32px;
