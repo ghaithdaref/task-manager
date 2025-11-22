@@ -10,7 +10,9 @@
     "cleanup-db": "ts-node src/db/cleanup.ts",
     "reset-db": "ts-node src/db/cleanup.ts --reinit",
     "test-db": "ts-node src/db/test-connection.ts",
-    "create-db": "ts-node create-database.ts"
+    "create-db": "ts-node create-database.ts",
+    "build:api": "npm -w apps/api run build",
+    "start:api": "npm -w apps/api run start"
   },
   "dependencies": {
     "bcrypt": "^5.1.1",
