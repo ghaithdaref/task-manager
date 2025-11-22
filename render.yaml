@@ -1,0 +1,25 @@
+# This file defines the services for Render deployment
+# It assumes the API is deployed as a Web Service and the Web App as a Static Site.
+
+services:
+  # 1. Web Service (API)
+  - type: web
+    name: smart-task-manager-api
+    env: node
+    rootDir: apps/api
+    buildCommand: npm install && npm run build
+    startCommand: npm run start
+    # Add environment variables for database connection here
+
+  # 2. Static Site (Web App)
+  - type: static
+    name: smart-task-manager-web
+    rootDir: apps/web
+    buildCommand: npm install && npm run build
+    publishPath: ./dist # Assuming Vite builds to 'dist'
+    
+    # Rewrite rule to fix the "Not Found" issue on refresh (SPA routing)
+    routes:
+      - type: rewrite
+        source: /.*
+        destination: /index.html
