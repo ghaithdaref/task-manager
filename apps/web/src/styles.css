@@ -1558,6 +1558,11 @@ input.input[type="date"]::-webkit-calendar-picker-indicator {
   margin-top: var(--space-lg);
   align-items: flex-start;
 }
+@media (max-width: 960px) {
+  .calendar-layout {
+    grid-template-columns: 1fr; /* Stack calendar and agenda on smaller screens */
+  }
+}
 .calendar-grid-card {
   display: grid;
   gap: var(--space-sm);
@@ -1577,6 +1582,27 @@ input.input[type="date"]::-webkit-calendar-picker-indicator {
 .calendar-grid-card > .calendar-weekdays,
 .calendar-grid-card > .calendar-days {
   min-width: 700px;
+}
+@media (max-width: 600px) {
+  .calendar-grid-card > .calendar-weekdays,
+  .calendar-grid-card > .calendar-days {
+    min-width: 100%; /* Allow the grid to shrink on mobile */
+  }
+  .calendar-weekdays,
+  .calendar-days {
+    grid-template-columns: repeat(7, minmax(0, 1fr)); /* Ensure 7 columns */
+  }
+  .calendar-day {
+    min-height: 80px; /* Reduce minimum height of day cells */
+    padding: var(--space-xs); /* Reduce padding */
+    font-size: 12px;
+  }
+  .calendar-day__date {
+    font-size: 14px;
+  }
+  .calendar-day__weekday {
+    display: none; /* Hide weekday name inside the cell to save space */
+  }
 }
 .calendar-weekdays {
   display: grid;
