@@ -1,6 +1,7 @@
 import axios from 'axios'
 
-const baseURL = import.meta.env.VITE_BASE_URL || 'http://localhost:5020'\nexport const api = axios.create({ baseURL, withCredentials: true })
+const baseURL = import.meta.env.VITE_BASE_URL || 'http://localhost:5020'
+export const api = axios.create({ baseURL, withCredentials: true })
 
 export const setAccessToken = (token?: string) => {
   if (!token) delete (api.defaults.headers as any).Authorization
