@@ -5,7 +5,7 @@ export const config = {
   port: parseInt(process.env.PORT || '5020'),
   jwtSecret: process.env.JWT_SECRET || 'dev-secret',
   jwtRefreshSecret: process.env.JWT_REFRESH_SECRET || 'dev-refresh',
-  allowedOrigins: (process.env.ALLOWED_ORIGINS || 'http://localhost:5173,http://localhost:5174')
+  allowedOrigins: (process.env.ALLOWED_ORIGINS || 'http://localhost:5173,http://localhost:5174,https://smart-task-manager-web.onrender.com')
     .split(','),
   database: {
     host: process.env.DB_HOST || 'localhost',
