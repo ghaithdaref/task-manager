@@ -1566,10 +1566,10 @@ input.input[type="date"]::-webkit-calendar-picker-indicator {
 .calendar-grid-card {
   display: grid;
   gap: var(--space-sm);
-  overflow-x: auto;
+  overflow-x: auto; /* Ensure horizontal scrolling is enabled */
   padding-bottom: 4px;
   position: relative;
-  overflow: hidden;
+  overflow-y: hidden; /* Prevent vertical scrollbar from showing due to horizontal scroll */
 }
 .calendar-grid-card::after {
   content:"";
@@ -1586,7 +1586,7 @@ input.input[type="date"]::-webkit-calendar-picker-indicator {
 @media (max-width: 600px) {
   .calendar-grid-card > .calendar-weekdays,
   .calendar-grid-card > .calendar-days {
-    min-width: 100%; /* Allow the grid to shrink on mobile */
+    min-width: 420px; /* Force a minimum width to enable horizontal scrolling */
   }
   .calendar-days {
     gap: 1px; /* Minimal gap between cells */
