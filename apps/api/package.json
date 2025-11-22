@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "scripts": {
     "dev": "ts-node-dev --respawn --transpile-only src/index.ts",
-    "build": "tsc -p tsconfig.json",
+    "build": "tsc -p tsconfig.json --skipLibCheck",
     "start": "node dist/index.js",
     "test": "jest",
     "migrate": "ts-node -e \"import('./src/db/index').then(m => m.initializeSchema().then(() => process.exit(0)).catch(e => { console.error(e); process.exit(1); }))\"",
