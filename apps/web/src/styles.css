@@ -1588,25 +1588,33 @@ input.input[type="date"]::-webkit-calendar-picker-indicator {
   .calendar-grid-card > .calendar-days {
     min-width: 100%; /* Allow the grid to shrink on mobile */
   }
+  .calendar-days {
+    gap: 1px; /* Minimal gap between cells */
+  }
   .calendar-weekdays,
   .calendar-days {
     grid-template-columns: repeat(7, minmax(0, 1fr)); /* Ensure 7 columns */
   }
+  .calendar-weekdays {
+    gap: 1px; /* Minimal gap for weekdays */
+  }
   .calendar-day {
-    min-height: 80px; /* Increase min-height to force vertical shape */
-    padding: 2px; /* Minimal padding */
-    font-size: 10px; /* Minimal font size */
+    min-height: 50px; /* Reduced height for a more square look */
+    padding: 4px; /* Minimal padding */
+    font-size: 12px; /* Slightly larger font for date visibility */
     border: none; /* Remove border for cleaner look */
-    box-shadow: 0 4px 12px rgba(0,0,0,0.1); /* Use shadow instead of border */
+    box-shadow: none; /* Remove shadow for a flat look like the reference image */
+    border-radius: 0; /* Remove border radius for a continuous grid look */
     /* Ensure content is stacked vertically and tightly packed */
     justify-content: flex-start;
     align-items: center;
     text-align: center;
+    background: var(--card); /* Ensure background is set */
   }
   .calendar-day__date {
     font-size: 14px; /* Increase date font size for visibility */
-    justify-content: center; /* Center date for vertical look */
-    margin-bottom: 2px;
+    justify-content: center; /* Center date */
+    margin-bottom: 0; /* Remove margin */
   }
   .calendar-day__weekday {
     display: none; /* Hide weekday name inside the cell to save space */
@@ -1615,6 +1623,11 @@ input.input[type="date"]::-webkit-calendar-picker-indicator {
   .calendar-day__tasks,
   .calendar-day__footer {
     display: none !important;
+  }
+  /* Apply border radius to the calendar days container to match the reference image */
+  .calendar-days {
+    border-radius: 10px;
+    overflow: hidden; /* Clip children to the border radius */
   }
 }
 .calendar-weekdays {
