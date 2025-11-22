@@ -11,7 +11,7 @@ This document provides a quick reference for setting up the project locally, und
 2. **Clone & install dependencies**
    ```bash
    git clone <repo>
-   cd h-2
+   cd main
    npm install
    ```
 
