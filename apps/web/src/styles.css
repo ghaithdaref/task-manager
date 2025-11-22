@@ -178,11 +178,15 @@ main { min-height: 100vh; background: transparent; transition: margin-left var(-
     height: 32px;
   }
   /* Fix: Hide text in the Logout button on mobile to save space */
-  .floating-controls__cluster--right .button:last-child > span:not(.button-icon) {
-    display: none;
-  }
+  /* Final Fix: Force Logout button to be icon-only */
   .floating-controls__cluster--right .button:last-child {
     padding: 8px; /* Square button for icon only */
+    font-size: 0; /* Hide text */
+    text-indent: -9999px; /* Hide text */
+  }
+  .floating-controls__cluster--right .button:last-child .button-icon {
+    font-size: 16px; /* Restore icon size */
+    text-indent: 0; /* Restore icon position */
   }
 }
 [data-theme="dark"] .floating-controls .overlay-block {
