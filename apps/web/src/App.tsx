@@ -132,8 +132,8 @@ export default function App() {
               <input
                 id="theme-input"
                 type="checkbox"
-                checked={theme==='dark'}
-                onChange={e=>setTheme(e.currentTarget.checked?'dark':'light')}
+                checked={theme==='light'}
+                onChange={e=>setTheme(e.currentTarget.checked?'light':'dark')}
                 aria-label="Toggle theme"
               />
               <div className="slider round">
