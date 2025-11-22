@@ -123,7 +123,7 @@ main { min-height: 100vh; background: transparent; transition: margin-left var(-
   gap: var(--space-sm);
   z-index: 1400;
   pointer-events: none;
-  flex-wrap: wrap;
+  flex-wrap: nowrap; /* Prevent wrapping on mobile */
 }
 .floating-controls__cluster {
   display: flex;
@@ -161,6 +161,10 @@ main { min-height: 100vh; background: transparent; transition: margin-left var(-
 }
 
 @media (max-width: 600px) {
+  .floating-controls {
+    left: var(--space-sm); /* Reduce horizontal margin */
+    right: var(--space-sm);
+  }
   .floating-controls .overlay-block {
     padding: var(--space-xs); /* Smaller padding on mobile */
     gap: var(--space-xs);
