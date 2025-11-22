@@ -79,7 +79,7 @@ BEGIN
   NEW.updated_at = CURRENT_TIMESTAMP;
   RETURN NEW;
 END;
-$$ language 'plpgsql';
+$$ LANGUAGE plpgsql;
 
 -- Triggers to automatically update updated_at
 CREATE TRIGGER update_users_updated_at BEFORE UPDATE ON users
