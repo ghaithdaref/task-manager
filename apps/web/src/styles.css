@@ -1593,14 +1593,14 @@ input.input[type="date"]::-webkit-calendar-picker-indicator {
     grid-template-columns: repeat(7, minmax(0, 1fr)); /* Ensure 7 columns */
   }
   .calendar-day {
-    min-height: 80px; /* Reduce minimum height of day cells */
-    padding: var(--space-xs); /* Reduce padding */
-    font-size: 12px;
+    min-height: 60px; /* Further reduce minimum height of day cells */
+    padding: 4px; /* Further reduce padding */
+    font-size: 11px; /* Further reduce font size */
     border: none; /* Remove border for cleaner look */
     box-shadow: 0 4px 12px rgba(0,0,0,0.1); /* Use shadow instead of border */
   }
   .calendar-day__date {
-    font-size: 14px;
+    font-size: 12px; /* Further reduce date font size */
   }
   .calendar-day__weekday {
     display: none; /* Hide weekday name inside the cell to save space */
@@ -1668,12 +1668,12 @@ input.input[type="date"]::-webkit-calendar-picker-indicator {
   font-size: 12px;
   opacity: 0.6;
 }
-.calendar-day__tasks {
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-  margin-bottom: 6px;
-}
+  .calendar-day__tasks {
+    display: flex;
+    flex-direction: column;
+    gap: 2px; /* Reduce gap between tasks */
+    margin-bottom: 4px; /* Reduce margin */
+  }
 .calendar-event {
   display: inline-flex;
   align-items: center;
@@ -1704,20 +1704,20 @@ input.input[type="date"]::-webkit-calendar-picker-indicator {
   font-size: 11px;
   opacity: 0.7;
 }
-.calendar-day__add {
-  width: 26px;
-  height: 26px;
-  border-radius: 50%;
-  border: 1px solid rgba(0,0,0,0.12);
-  background: transparent;
-  color: var(--text);
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 16px;
-  cursor: pointer;
-  transition: transform var(--dur-short) var(--ease), border-color var(--dur-short) var(--ease);
-}
+  .calendar-day__add {
+    width: 20px; /* Reduce size of add button */
+    height: 20px;
+    border-radius: 50%;
+    border: 1px solid rgba(0,0,0,0.12);
+    background: transparent;
+    color: var(--text);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px; /* Reduce icon size */
+    cursor: pointer;
+    transition: transform var(--dur-short) var(--ease), border-color var(--dur-short) var(--ease);
+  }
 .calendar-day__add:hover {
   transform: translateY(-1px);
   border-color: var(--title2);
