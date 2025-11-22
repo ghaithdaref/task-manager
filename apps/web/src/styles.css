@@ -177,10 +177,11 @@ main { min-height: 100vh; background: transparent; transition: margin-left var(-
     width: 32px;
     height: 32px;
   }
-  .floating-controls__cluster--right .button > span {
-    display: none; /* Hide text in right cluster buttons on mobile */
+  /* Fix: Hide text in the Logout button on mobile to save space */
+  .floating-controls__cluster--right .button:last-child > span:not(.button-icon) {
+    display: none;
   }
-  .floating-controls__cluster--right .button {
+  .floating-controls__cluster--right .button:last-child {
     padding: 8px; /* Square button for icon only */
   }
 }
