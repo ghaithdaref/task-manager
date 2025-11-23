@@ -15,10 +15,13 @@ const app = express()
 app.use(express.json())
 app.use(cookieParser())
 app.use(helmet())
-app.use(cors({ origin: (origin, cb) => {
-  if (!origin) return cb(null, true)
-  cb(null, config.allowedOrigins.includes(origin))
-}, credentials: true }))
+app.use(cors({ 
+  origin: (origin, cb) => {
+    if (!origin) return cb(null, true)
+    cb(null, config.allowedOrigins.includes(origin))
+  }, 
+  credentials: true 
+}))
 
 app.get('/health', (_req, res) => res.json({ ok: true }))
 app.use('/auth', authRoutes)
