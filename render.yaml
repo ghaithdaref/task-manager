@@ -11,15 +11,10 @@ services:
     startCommand: npm run start
     # Add environment variables for database connection here
 
-  # 2. Static Site (Web App)
-  - type: static
+  # 2. Web Service (Web App) - Converted from Static Site to fix SPA routing issue
+  - type: web
     name: smart-task-manager-web
+    env: node
     rootDir: apps/web
     buildCommand: npm install && npm run build
-    publishPath: ./dist # Assuming Vite builds to 'dist'
-    
-    # Rewrite rule to fix the "Not Found" issue on refresh (SPA routing)
-    routes:
-      - type: rewrite
-        source: /*
-        destination: /index.html
+    startCommand: npm run start
