@@ -26,16 +26,8 @@ app.use('/tasks', taskRoutes)
 app.use('/recurring', recurringRoutes)
 app.use('/analytics', analyticsRoutes)
 
-// Serve static files from the React app
-// Assumes the build directory is apps/web/dist relative to the project root
-const webAppPath = path.join(__dirname, '../../../apps/web/dist');
-app.use(express.static(webAppPath));
-
-// The "catchall" handler: for any request that doesn't
-// match one above, send back React's index.html file.
-app.get('*', (req, res) => {
-  res.sendFile(path.join(webAppPath, 'index.html'));
-});
+// API is now served separately from the Web App.
+// The Web App (frontend) handles its own static file serving and routing.
 
 // Initialize database schema on startup
 const startServer = async () => {
