@@ -116,8 +116,35 @@ export const initializeSchema = async () => {
   try {
     const schema = fs.readFileSync(schemaPath, 'utf-8')
     
-    // Remove comments and split by semicolon, but be careful with functions
-    const statements = schema.split(/;\s*\n/)
+    // Split statements more carefully to handle functions with multiple semicolons
+    // Look for statements that end with a semicolon followed by newline
+    const statements: string[] = []
+    let currentStatement = ''
+    let inFunction = false
+    let inDollarQuote = false
+    
+    const lines = schema.split('\n')
+    for (const line of lines) {
+      // Check for dollar quote markers
+      if (line.includes('$$')) {
+        inDollarQuote = !inDollarQuote
+      }
+      
+      currentStatement += line + '\n'
+      
+      // If we're not in a function or dollar quote, and line ends with semicolon, it's a complete statement
+      if (!inDollarQuote && line.trim().endsWith(';')) {
+        if (currentStatement.trim().length > 0) {
+          statements.push(currentStatement.trim())
+        }
+        currentStatement = ''
+      }
+    }
+    
+    // Add any remaining statement
+    if (currentStatement.trim().length > 0) {
+      statements.push(currentStatement.trim())
+    }
     
     // Execute each statement
     for (const statement of statements) {
