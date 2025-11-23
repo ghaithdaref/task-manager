@@ -3,6 +3,7 @@ import Modal from './Modal'
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { api } from '../api/client'
 import type { TaskPriority } from '../api/types'
+import DatePicker from './DatePicker'
 
 type Props = { open: boolean; onClose: () => void; task?: any; initialDueDate?: string }
 
@@ -68,7 +69,7 @@ export default function TaskModal({ open, onClose, task, initialDueDate }: Props
         <div className="modal-two-col">
           <div className="modal-field">
             <label htmlFor="task-due-date">Due date</label>
-            <input id="task-due-date" className="input" type="date" value={dueDate} onChange={e=>setDueDate(e.target.value)} />
+            <DatePicker value={dueDate} onChange={setDueDate} />
           </div>
           <div className="modal-field">
             <span>Priority</span>
